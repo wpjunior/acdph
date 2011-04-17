@@ -1,0 +1,10 @@
+<h2>{{ page.title }}</h2>
+<div id="page">
+  {% if request.user.is_authenticated %}
+  <p id="actions">
+    <a href="?action=edit">Editar</a>
+    <a href="?action=delete">Apagar</a>
+  </p>
+  {% endif %}
+{{ page.content }}
+</div>
