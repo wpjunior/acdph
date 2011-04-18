@@ -6,7 +6,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    # url(r'^$', 'terranossa.views.home', name='home'),
+    url(r'^$', 'terranossa.views.home', name='home'),
     # url(r'^terranossa/', include('terranossa.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

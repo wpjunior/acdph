@@ -1,7 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
 <h2>{% if f %}Editando "{{ f.title }}"{% else %}Criando Página{% endif %}</h2>
 <p><label>Local:</label> {{ url }}</p>
 <form method="POST">
-{{ form.as_p }}
+<table>
+{% csrf_token %}
+{{ form.as_table }}
+</table>
 <input type="submit" value="Salvar"/>
 </form>
-
+{% endblock %}
+{% block sidebar2 %}
+<!-- OCULTO -->
+{% endblock %}

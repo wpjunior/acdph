@@ -20,6 +20,8 @@ DEFAULT_TEMPLATE = 'wikipages/page.html'
 # or a redirect is required for authentication, the 404 needs to be returned
 # without any CSRF checks. Therefore, we only
 # CSRF protect the internal implementation.
+
+@csrf_protect
 def wikipage(request, url):
     """
     Public interface to the flat page view.
