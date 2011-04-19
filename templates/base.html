@@ -7,10 +7,12 @@
     <title></title>
 
     <script type="text/javascript" src="{{ STATIC_URL }}/js/script.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}/js/jquery-1.5.2.min.js"></script>
 
     <link rel="stylesheet" href="{{ STATIC_URL }}/css/style.css" type="text/css" media="screen" />
     <!--[if IE 6]><link rel="stylesheet" href="{{ STATIC_URL }}/css/style.ie6.css" type="text/css" media="screen" /><![endif]-->
     <!--[if IE 7]><link rel="stylesheet" href="{{ STATIC_URL }}/css/style.ie7.css" type="text/css" media="screen" /><![endif]-->
+    {% block header %}{% endblock %}
   </head>
   <body>
     <div id="art-main">

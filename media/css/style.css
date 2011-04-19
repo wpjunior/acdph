@@ -1373,7 +1373,7 @@ input, select
 	border: 0;
 	float: left;
 	overflow: hidden;
-	width: 519px;
+	min-width: 519px;
 }
 .art-contentLayout .art-content-sidebar1
 {
@@ -1421,3 +1421,4 @@ input, select
 /* end LayoutCell */
 
 
+textarea.mce {width: 800px; height: 600px; display: block;}
