@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% block header %}
+
+<link rel="stylesheet" href="{{ STATIC_URL }}/css/wikiform.css" type="text/css" media="screen" />
 <script type="text/javascript" src="{{ STATIC_URL }}js/tiny_mce/jquery.tinymce.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/tiny_mce/tiny_mce.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/tiny_mce/textareas.js"></script>
@@ -8,10 +10,10 @@
 <h2>{% if f %}Editando "{{ f.title }}"{% else %}Criando Página{% endif %}</h2>
 <p><label>Local:</label> {{ url }}</p>
 <form method="POST">
-<table>
 {% csrf_token %}
-{{ form.as_table }}
-</table>
+<p><tabel>Titulo:</label>{{ form.title }}</p>
+{{ form.content }}
+
 <input type="submit" value="Salvar"/>
 </form>
 {% endblock %}
