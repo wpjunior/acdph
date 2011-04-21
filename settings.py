@@ -118,6 +118,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'terranossa.wikipages',
+    'terranossa.albuns'
 )
 
 LOGGING = {

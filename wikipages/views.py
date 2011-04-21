@@ -11,7 +11,6 @@ from django.shortcuts import render_to_response
 from hashlib import md5
 from wikipages.models import Page, Photo
 from wikipages.forms import PageForm
-from django.core.files.images import ImageFile
 from utils import JSONResponse
 DEFAULT_TEMPLATE = 'wikipages/page.html'
 

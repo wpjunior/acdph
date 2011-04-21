@@ -8,7 +8,7 @@ urlpatterns = patterns('',
     # Examples:
     url(r'^media/(.*)','django.views.static.serve',{'document_root':MEDIA_ROOT}),
     url(r'^$', 'terranossa.views.home', name='home'),
-    # url(r'^terranossa/', include('terranossa.foo.urls')),
+    url(r'^albuns/', include('terranossa.albuns.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

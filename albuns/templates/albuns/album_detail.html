@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block header %}
+{% if request.user.is_authenticated %}
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/themes/base/jquery-ui.css" id="theme">
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script>
+<script src="{{ STATIC_URL }}js/jquery.fileupload.js"></script>
+<script src="{{ STATIC_URL }}js/jquery.fileupload-ui.js"></script>
+<link rel="stylesheet" href="{{ STATIC_URL }}css/jquery.fileupload-ui.css">
+{% endif %}
+
+{% endblock %}
+
+
+{% block content %}
+<h2>{{ object.name }}</h2>
+
+{% if request.user.is_authenticated %}
+<table id="files"></table>
+<form id="file_upload" action="/albuns/{{ object.id }}/upload/" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  <input type="hidden" name="action" value="send_image"/>
+    <input type="file" name="file" multiple>
+    <button>Adicionar Fotos</button>
+    <div class="js">Adicionar Fotos</div>
+</form>
+<script>
+/*global $ */
+$(function () {
+    $('#file_upload').fileUploadUI({
+        uploadTable: $('#files'),
+        buildUploadRow: function (files, index) {
+            return $('<tr><td>' + files[index].name + '<\/td>' +
+                    '<td class="file_upload_progress"><div><\/div><\/td>' +
+                    '<td class="file_upload_cancel">' +
+                    '<button class="ui-state-default ui-corner-all" title="Cancel">' +
+                    '<span class="ui-icon ui-icon-cancel">Cancel<\/span>' +
+                    '<\/button><\/td><\/tr>');
+        },
+        buildDownloadRow: function (file) {
+			      if (file.error) {
+			      alert(file.error);
+			      return;
+			      }
+			      window.location.reload();
+        }
+    });
+});
+</script> 
+{% endif %}
+
+{% for photo in object.get_all_photos %}
+<img src="{{ photo.get_photo_thumbnail }}">{{ photo.get_photo_thumbail }}</img>
+{% endfor %}
+
+{% endblock %}
