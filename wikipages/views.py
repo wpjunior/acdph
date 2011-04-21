@@ -1,3 +1,4 @@
+from os.path import splitext
 from django.template import loader, RequestContext
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect, Http404
@@ -7,9 +8,11 @@ from django.utils.safestring import mark_safe
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.views import redirect_to_login
 from django.shortcuts import render_to_response
-
-from wikipages.models import Page
+from hashlib import md5
+from wikipages.models import Page, Photo
 from wikipages.forms import PageForm
+from django.core.files.images import ImageFile
+from utils import JSONResponse
 DEFAULT_TEMPLATE = 'wikipages/page.html'
 
 # This view is called from FlatpageFallbackMiddleware.process_response
@@ -38,8 +41,20 @@ def wikipage(request, url):
     if not url.startswith('/'):
         url = "/" + url
 
-    action = request.GET.get('action', '')
-    
+    if request.method == "GET":
+        action = request.GET.get('action', '')
+
+        if not action:
+            action = request.POST.get('action', '') 
+
+    else:
+        action = request.POST.get('action', '')
+
+        if not action:
+            action = request.GET.get('action', '') 
+
+    print request.method, request.POST, request.GET
+        
     try:
         f = Page.objects.get(url__exact=url)
     except Page.DoesNotExist:
@@ -73,10 +88,29 @@ def wikipage(request, url):
                 form = PageForm(instance=f)
             else:
                 form = PageForm()
+
         return render_to_response('wikipages/form.html',
                                   locals(),
                                   context_instance=RequestContext(request))
 
+
+    
+    if action == "send_image":
+        file = request.FILES['file']
+        contents = file.read()
+        hash = md5(contents).hexdigest()
+        b, ext = splitext(file.name)
+        filename = "%s%s" %(hash, ext)
+
+        if f is None:
+            f = Page(url=url)
+            f.save()
+
+        p = Photo(content_object=f)
+        p.image.save(filename, file)
+        p.save()
+        
+        return JSONResponse({'url': p.image.url})
     #actions edit, delete
     raise Http404
 

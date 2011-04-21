@@ -1,5 +1,14 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.contenttypes import generic
+
+class Photo(models.Model):
+    name = models.CharField("Nome", max_length=100)
+    image = models.ImageField("Foto", upload_to='fotos')
+    content_type = models.ForeignKey(ContentType)
+    object_id = models.PositiveIntegerField()
+    content_object = generic.GenericForeignKey("content_type", "object_id")
 
 class Page(models.Model):
     url = models.CharField(_('URL'), max_length=100, db_index=True, unique=True)
