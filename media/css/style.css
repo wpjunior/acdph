@@ -1421,4 +1421,10 @@ input, select
 /* end LayoutCell */
 
 
+#album {margin-top: 10px;}
 textarea.mce {width: 650px; height: 600px; display: block;}
+div.photo {display: inline-block; float: left; margin: 2px;}
+div.photo p {margin: 1px; text-align: center;}
+div.album {display: inline-block; float: left; margin: 2px;}
+div.album p.title {margin: 3px; text-align: center; font-weight: bold;}
+div#editwindow {display: none;}

@@ -6,5 +6,6 @@ urlpatterns = patterns('albuns.views',
                        #TODO: require login
     url(r'^add/$', AlbumCreate.as_view()),
     url(r'^(?P<pk>\d+)/$', AlbumView.as_view()),
-    url(r'^(?P<pk>\d+)/upload/$', 'upload_image'), #TODO require login
+    url(r'^(?P<pk>\d+)/action/$', 'image_action'), #TODO require login
+    url(r'action/$', 'album_action'), #TODO require login
 )
