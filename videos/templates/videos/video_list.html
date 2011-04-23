@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load filters %}
+{% block header %}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/fullpage.css" type="text/css" media="screen" />
+<script type="text/javascript" src="{{ STATIC_URL }}js/albumlist.js"></script>
+{% endblock %}
+{% block content %}
+{% if request.user.is_authenticated %}
+<a href="/videos/add/">+ Adicionar Vídeo</a>
+{% endif %}
+<div id="videolist">
+{% for object in object_list %}
+<div class="album" rel="{{ object.id }}">
+  {{ object.link|youtube }}
+  <p class="title">
+    {{ object.name }}
+    {% if request.user.is_authenticated %}
+    <a href="#" class="delete">Apagar</a>
+    {% endif %}
+  </p>
+</div>
+{% endfor %}
+</div>
+{% endblock %}

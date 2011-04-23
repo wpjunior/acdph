@@ -3,26 +3,10 @@ from django.shortcuts import get_object_or_404
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView
 from django.views.generic.detail import DetailView
-from django.template import RequestContext
-from albuns.models import Album, Photo
-from utils import JSONResponse
-from django.http import Http404
 
-class ContextHackMixin(object):
-    def render_to_response(self, context, **response_kwargs):
-        """
-        Returns a response with a template rendered with the given context.
-        """
-        context['request'] = self.request
-        if hasattr(self, "get_extra_context"):
-            context.update(self.get_extra_context())
-            
-        return self.response_class(
-            request = self.request,
-            template = self.get_template_names(),
-            context = RequestContext(self.request, context),
-            **response_kwargs
-        )
+from albuns.models import Album, Photo
+from utils import JSONResponse, ContextHackMixin
+from django.http import Http404
 
 class AlbumList(ContextHackMixin, ListView):
     model = Album
