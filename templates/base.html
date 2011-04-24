@@ -6,14 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
     <title></title>
 
-    <script type="text/javascript" src="{{ STATIC_URL }}/js/script.js"></script>
+    
     <script type="text/javascript" src="{{ STATIC_URL }}/js/jquery-1.5.2.min.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}/js/crsf.js"></script>
+
+    {% if request.user.is_authenticated %}
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/themes/base/jquery-ui.css" id="theme"/>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/i18n/jquery-ui-i18n.min.js"></script>
+    {% endif %}
 
     <link rel="stylesheet" href="{{ STATIC_URL }}/css/style.css" type="text/css" media="screen" />
     <!--[if IE 6]><link rel="stylesheet" href="{{ STATIC_URL }}/css/style.ie6.css" type="text/css" media="screen" /><![endif]-->
     <!--[if IE 7]><link rel="stylesheet" href="{{ STATIC_URL }}/css/style.ie7.css" type="text/css" media="screen" /><![endif]-->
     {% block header %}{% endblock %}
+    <script type="text/javascript" src="{{ STATIC_URL }}/js/script.js"></script>
   </head>
   <body>
     <div id="art-main">
@@ -97,13 +104,25 @@
           <div class="cleared"></div><div class="art-Footer">
             <div class="art-Footer-inner">
               <a href="#" class="art-rss-tag-icon" title="RSS"></a>
-            </div>
+            
+	      <div class="sis">
+		{% if request.user.is_authenticated %}
+		<span>Bem Vindo {{ request.user.username }}</span> -
+		<a href="/auth/logout/">Sair</a>
+		{% else %}
+		<a href="/auth/login/">Autenticar</a>
+		{% endif %}
+	      </div>
+	    </div>
             <div class="art-Footer-background"></div>
           </div>
 	</div>
       </div>
       <div class="cleared"></div>
-      <p class="art-page-footer">Feito por <a href="mailto:wilsonpjunior@gmail.com">Wilson Júnior</a></p>
+      
+      <p class="art-page-footer">
+	
+      Feito por <a href="mailto:wilsonpjunior@gmail.com">Wilson Júnior</a></p>
     </div>
   </body>
 </html>

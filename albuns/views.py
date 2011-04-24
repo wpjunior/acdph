@@ -1,18 +1,36 @@
 # Create your views here
 from django.shortcuts import get_object_or_404
 from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.detail import DetailView
 
 from albuns.models import Album, Photo
 from utils import JSONResponse, ContextHackMixin
 from django.http import Http404
+from django import forms
+from django.contrib.auth.decorators import login_required
+
+class AlbumForm(forms.ModelForm):
+    date = forms.DateField(label="Data",
+                           input_formats=("%d/%m/%Y",),
+                           widget=forms.DateTimeInput(format='%d/%m/%Y', attrs={
+                'class':'input',
+                'readonly':'readonly',
+                'size':'15'
+                }))
+    class Meta:
+        model = Album
 
 class AlbumList(ContextHackMixin, ListView):
     model = Album
 
 class AlbumCreate(ContextHackMixin, CreateView):
     model = Album
+    form_class = AlbumForm
+
+class AlbumEdit(ContextHackMixin, UpdateView):
+    model = Album
+    form_class = AlbumForm
 
 class AlbumView(ContextHackMixin, DetailView):
     model = Album
@@ -77,6 +95,7 @@ def _delete_album(request):
     album.delete()
     return JSONResponse({'error': None})
 
+@login_required
 def image_action(request, pk):
     album = get_object_or_404(Album, pk=pk)
     action = request.POST.get('action', '')
@@ -92,6 +111,7 @@ def image_action(request, pk):
 
     raise Http404
 
+@login_required
 def album_action(request):
     action = request.POST.get('action', '')
     

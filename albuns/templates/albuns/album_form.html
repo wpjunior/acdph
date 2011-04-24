@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% block header %}
-
 {% endblock %}
 {% block content %}
 <form method="POST" action=".">
@@ -8,6 +7,12 @@
 <table>
 {{ form.as_table }}
 </table>
-<input type="submit" value="Salvar">
+<input class="to_button" type="submit" value="Salvar">
 </form>
+<script>
+$(document).ready(function(e) {
+$.datepicker.setDefaults($.datepicker.regional['pt-BR']);
+$('input[name="date"]').datepicker();
+});
+</script>
 {% endblock %}

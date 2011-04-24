@@ -4,19 +4,31 @@ from django import template
 import re
 
 register = template.Library()
+regex = re.compile(r"^(http://)?(www\.)?(youtube\.com/watch\?v=)?(?P<id>[A-Za-z0-9\-=_]{11})")
+
+@register.filter
+@stringfilter
+def youtubeurl(url):
+    match = regex.match(url)
+    if not match: return ""
+    video_id = match.group('id')
+    return mark_safe("http://www.youtube.com/embed/%s" % video_id)
+youtubeurl.is_safe = True # Don't escape HTML
 
 @register.filter
 @stringfilter
 def youtube(url):
-    regex = re.compile(r"^(http://)?(www\.)?(youtube\.com/watch\?v=)?(?P<id>[A-Za-z0-9\-=_]{11})")
     match = regex.match(url)
     if not match: return ""
     video_id = match.group('id')
-    return mark_safe("""
-    <object width="425" height="344">
-    <param name="movie" value="http://www.youtube.com/watch/v/%s"></param>
-    <param name="allowFullScreen" value="true"></param>
-    <embed src="http://www.youtube.com/watch/v/%s" type="application/x-shockwave-flash" allowfullscreen="true" width="425" height="344"></embed>
-    </object>
-    """ % (video_id, video_id))
+    return mark_safe("""<iframe title="YouTube video player" width="240" height="195" src="http://www.youtube.com/embed/%s" frameborder="0" allowfullscreen></iframe>""" % video_id)
 youtube.is_safe = True # Don't escape HTML
+
+@register.filter
+@stringfilter
+def youtubepreview(url):
+    match = regex.match(url)
+    if not match: return ""
+    video_id = match.group('id')
+    return mark_safe("""<img src="http://img.youtube.com/vi/%s/2.jpg"/>""" % video_id)
+youtubepreview.is_safe = True # Don't escape HTML

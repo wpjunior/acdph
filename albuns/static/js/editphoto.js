@@ -7,7 +7,11 @@ $(document).ready(function (e) {
 	$("div#editwindow").find('input[name="photo_id"]').val(id);
 	$("div#editwindow").find('input[name="name"]').val(title);
 	$("div#editwindow").find('img.thumbnail').attr('src', thumburl);
-	$("div#editwindow").slideDown();
+	$("div#editwindow").show();
+	$.fancybox({'href': '#editwindow',
+		    'onClosed'		: function() {
+			$("#editwindow").hide();
+		    }});
 	return false;
     }
 
@@ -55,8 +59,10 @@ $(document).ready(function (e) {
 		return;
 	    }
 	    
-	    $('div#editwindow').slideUp();
+	    $.fancybox.close();
+	    $('div#editwindow').hide();
 	    $('div.photo[rel="'+data.id+'"] a.photo').attr('title', data.name);
+	    $('div.photo[rel="'+data.id+'"] b.title').text(data.name);
 	}
 	data = $(this).serialize();
 	$.post($(this).attr('action'), data, onEdit);

@@ -4,19 +4,28 @@
 <script type="text/javascript" src="{{ STATIC_URL }}js/albumlist.js"></script>
 {% endblock %}
 {% block content %}
+
 {% if request.user.is_authenticated %}
-<a href="/albuns/add/">+ Adicionar Album</a>
+<a class="to_button" href="/albuns/add/"><span class="ui-icon ui-icon-plus"></span>Adicionar Album</a>
 {% endif %}
+
 <div id="albumlist">
 {% for object in object_list %}
 <div class="album" rel="{{ object.id }}">
-  <a href="{{ object.get_absolute_url }}"><img src="{{ object.get_first_photo_thumbnail }}"/></a>
-  <p class="title">
-    {{ object.name }}
-    {% if request.user.is_authenticated %}
+  <div class="album-container">
+    <a href="{{ object.get_absolute_url }}">
+      <img src="{{ object.get_first_photo_thumbnail }}"/>
+    </a>
+    <p class="caption">
+      <b>{{ object.name }}</b>
+    </p>
+  </div>
+  {% if request.user.is_authenticated %}
+  <p>
+    <a href="/albuns/edit/{{ object.id }}/" class="edit">Editar</a>
     <a href="#" class="delete">Apagar</a>
-    {% endif %}
   </p>
+  {% endif %}
 </div>
 {% endfor %}
 </div>

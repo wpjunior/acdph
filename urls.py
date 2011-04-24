@@ -6,6 +6,8 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
+    url(r'^auth/logout/$', 'django.contrib.auth.views.logout_then_login'),
+    url(r'^auth/login/$', 'django.contrib.auth.views.login'),
     url(r'^media/(.*)','django.views.static.serve',{'document_root':MEDIA_ROOT}),
     url(r'^$', 'terranossa.views.home', name='home'),
     url(r'^albuns/', include('terranossa.albuns.urls')),

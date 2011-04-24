@@ -11,4 +11,15 @@ function setFancyBox () {
 
 $(document).ready(function(e) {
     setFancyBox();
+    $('div.photo').hover(function() {
+	cap = $(this).find('p.caption');
+        if (cap.text().trim().length)
+	    cap.fadeIn(200);
+
+    }, function() {
+	cap = $(this).find('p.caption');
+        if (cap.text().trim().length)
+	    cap.fadeOut(200);
+
+    });
 });
