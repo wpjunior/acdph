@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     url(r'^auth/login/$', 'django.contrib.auth.views.login'),
     url(r'^media/(.*)','django.views.static.serve',{'document_root':MEDIA_ROOT}),
     url(r'^$', 'terranossa.views.home', name='home'),
+    url(r'^news/', include('terranossa.news.urls')),
     url(r'^albuns/', include('terranossa.albuns.urls')),
     url(r'^videos/', include('terranossa.videos.urls')),
 

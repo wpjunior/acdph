@@ -120,6 +120,7 @@ INSTALLED_APPS = (
     'terranossa.wikipages',
     'terranossa.albuns',
     'terranossa.videos',
+    'terranossa.news',
 )
 
 LOGGING = {

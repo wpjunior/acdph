@@ -40,7 +40,7 @@ $(document).ready(function (e) {
         buildDownloadRow: function (file) {
 	    if (file.error) {
 		alert(file.error);
-		return;
+		return $('');
 	    }
 
 	    $('div#album').append('<div class="photo" rel="'+file.id+'"><a class="photo" title="'+file.name+'" href="'+file.url+'" rel="group"><img src="'+file.thumburl+'"/></a><p><a class="edit" href="#">Editar</a> <a class="delete" href="#">Apagar</a></p></div>');

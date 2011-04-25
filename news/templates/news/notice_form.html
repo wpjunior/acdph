@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block header %}
+<script src="{{ STATIC_URL }}js/jquery.fileupload.js"></script>
+<script src="{{ STATIC_URL }}js/jquery.fileupload-ui.js"></script>
+<link rel="stylesheet" href="{{ STATIC_URL }}css/jquery.fileupload-ui.css">
+
+<link rel="stylesheet" href="{{ STATIC_URL }}/css/fullpage.css" type="text/css" media="screen" />
+<script type="text/javascript" src="{{ STATIC_URL }}js/tiny_mce/jquery.tinymce.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/tiny_mce/tiny_mce.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/tiny_mce/textareas.js"></script>
+{% endblock %}
+
+{% block content %}
+<h3>Adicionar Notícia</h3>
+<form class="embed-edit" method="POST" action=".">
+{% csrf_token %}
+<table>
+<tr><td><tabel>Titulo:</label></td><td>{{ form.name }}</td></tr>
+<tr><td><tabel>Categoria:</label></td><td>{{ form.category }}</td></tr>
+</table>
+{{ form.text }}
+<input class="to_button" type="submit" value="Salvar">
+</form>
+<script>
+$(document).ready(function(e) {
+$.datepicker.setDefaults($.datepicker.regional['pt-BR']);
+$('input[name="date"]').datepicker();
+});
+</script>
+{% endblock %}
