@@ -8,24 +8,31 @@
 <a class="to_button" href="/news/add/"><span class="ui-icon ui-icon-plus"></span>Adicionar Notícia</a>
 {% endif %}
 
-<div id="albumlist">
+<div id="noticelist">
 {% for object in object_list %}
-<div class="album" rel="{{ object.id }}">
-  <div class="album-container">
-    <a href="{{ object.get_absolute_url }}">
-      <img src="{{ object.get_first_photo_thumbnail }}"/>
-    </a>
-    <p class="caption">
-      <b>{{ object.name }}</b>
-    </p>
-  </div>
-  {% if request.user.is_authenticated %}
-  <p>
-    <a href="/albuns/edit/{{ object.id }}/" class="edit">Editar</a>
-    <a href="#" class="delete">Apagar</a>
-  </p>
-  {% endif %}
+<div class="notice" rel="{{ object.id }}">
+  <h2>{{ object.name }}</h2>
+  <p><small>Postado em {{ object.date }} por {% firstof object.user.get_full_name object.user.username %}
+    {% if request.user.is_authenticated %}
+    <a href="/news/edit/{{ object.id }}/">Editar</a>
+    {% endif %}
+  </small></p>
+  <img src="{{ object.image.url }}"/>
+  {{ object.text|safe }}
 </div>
 {% endfor %}
 </div>
+{% if is_paginated %}
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}">Mais recentes</a>
+        {% endif %}
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Mais antigas</a>
+        {% endif %}
+    </span>
+</div>
+{% endif %}
 {% endblock %}

@@ -12,11 +12,19 @@
 
 {% block content %}
 <h3>Adicionar Notícia</h3>
-<form class="embed-edit" method="POST" action=".">
+<form enctype="multipart/form-data" class="embed-edit" method="POST" action=".">
 {% csrf_token %}
 <table>
-<tr><td><tabel>Titulo:</label></td><td>{{ form.name }}</td></tr>
-<tr><td><tabel>Categoria:</label></td><td>{{ form.category }}</td></tr>
+  <tr>
+    <td><label>Titulo:</label></td>
+    <td>{{ form.name }}</td></tr>
+  <tr>
+    <td><label>Categoria:</label></td>
+    <td>{{ form.category }}</td>
+  </tr>
+  <tr>
+    <td><label>Imagem:</label></td>
+    <td>{{ form.image }}</td></tr>
 </table>
 {{ form.text }}
 <input class="to_button" type="submit" value="Salvar">
