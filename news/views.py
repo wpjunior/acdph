@@ -1,9 +1,11 @@
 # Create your views here.
-from news.models import Notice
+from news.models import Notice, Category
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.detail import DetailView
 from utils import ContextHackMixin
 from django import forms
+from django.shortcuts import get_object_or_404
 
 class NoticeForm(forms.ModelForm):
     text = forms.CharField(widget=forms.Textarea(attrs={'class':'mce'}))
@@ -14,6 +16,15 @@ class NoticeForm(forms.ModelForm):
 class NoticeList(ContextHackMixin, ListView):
     model = Notice
     paginate_by = 5
+
+    def get_queryset(self):
+        cat = self.request.GET.get('type', None)
+        
+        if cat:
+            category = get_object_or_404(Category, id=cat)
+            return Notice.objects.filter(category=category)
+
+        return Notice.objects.all()
 
 class NoticeAdd(ContextHackMixin, CreateView):
     model = Notice
@@ -32,3 +43,6 @@ class NoticeUpdate(ContextHackMixin, UpdateView):
 class NoticeDelete(ContextHackMixin, DeleteView):
     model = Notice
     success_url = "/news/"
+
+class NoticeView(ContextHackMixin, DetailView):
+    model = Notice
