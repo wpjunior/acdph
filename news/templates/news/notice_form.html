@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block content %}
-<h3>Adicionar Notícia</h3>
+<h3>{% if object %}Editar{% else %}Adicionar{% endif %} Notícia</h3>
 <form enctype="multipart/form-data" class="embed-edit" method="POST" action=".">
 {% csrf_token %}
 <table>
@@ -27,6 +27,7 @@
     <td>{{ form.image }}</td></tr>
 </table>
 {{ form.text }}
+<input class="to_button" type="button" value="Voltar" onclick="history.go(-1)" />
 <input class="to_button" type="submit" value="Salvar">
 </form>
 <script>

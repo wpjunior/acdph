@@ -6,7 +6,7 @@
 {% csrf_token %}
 <h4>{{ object.name }}</h4>
 <p>Postada em {{ object.date }} por {% firstof object.user.get_full_name object.user.username %}</p>
-<input type="button" value="Voltar" onclick="history.go(-1)" />
-<input type="submit" value="Sim tenho certeza" />
+<input class="to_button" type="button" value="Voltar" onclick="history.go(-1)" />
+<input class="to_button" type="submit" value="Sim tenho certeza" />
 </form>
 {% endblock %}

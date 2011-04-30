@@ -126,6 +126,7 @@
 	<small>{% now "d \de F \de Y, h:i:s" %}</small>
       </h2>
       <div class="art-PostContent">
+	<p>Idealizado por Luiz Vagner Jacinto, o PORTAL TERRA NOSSA é um espaço aberto, democrático e independente, destinado a divulgar e a discutir, publicamente, os problemas, as potencialidades, o dia-a-dia e as perspectivas futuras relacionadas com a cidade de Corumbá de Goiás.</p>
 	{% if notices %}
 	<ul class="slider">
           {% for notice in notices %}
@@ -136,6 +137,7 @@
 		  <p><small>Postado em {{ notice.date }} por {% firstof notice.user.get_full_name notice.user.username %}
 		      {% if request.user.is_authenticated %}
 		      <a href="/news/edit/{{ notice.id }}/">Editar</a>
+		      <a href="/news/delete/{{ notice.id }}/">Apagar</a>
 		      {% endif %}
 		  </small></p>
 		</div> 

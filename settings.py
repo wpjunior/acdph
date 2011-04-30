@@ -121,6 +121,7 @@ INSTALLED_APPS = (
     'terranossa.albuns',
     'terranossa.videos',
     'terranossa.news',
+    'terranossa.captcha',
 )
 
 LOGGING = {
@@ -144,3 +145,7 @@ LOGGING = {
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/auth/login'
 LOGOUT_URL = '/auth/logout'
+FROM_EMAIL = 'wilson@gmail.com'
+TO_EMAIL = 'wilson@gmail.com'
+CAPTCHA_LETTER_ROTATION = None
+CAPTCHA_NOISE_FUNCTION = None
