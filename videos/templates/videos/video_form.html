@@ -3,6 +3,7 @@
 
 {% endblock %}
 {% block content %}
+<h3>{% if object %}Editar{% else %}Adicionar{% endif %} Vídeo</h3>
 <form method="POST" action=".">
 {% csrf_token %}
 <table>

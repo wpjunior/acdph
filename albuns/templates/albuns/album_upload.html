@@ -1,0 +1,48 @@
+{% extends "compactbase.html" %}
+{% block header %}
+<!--<title>{{ object.name }} - Portal Terra Nossa</title>-->
+
+<link rel="stylesheet" href="{{ STATIC_URL }}css/fullpage.css" type="text/css" media="screen" />
+
+{% if request.user.is_authenticated %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/uploadphoto.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.fileupload.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.fileupload-ui.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.fileupload-uix.js"></script>
+<link rel="stylesheet" href="{{ STATIC_URL }}css/jquery.fileupload-ui.css">
+{% endif %}
+
+{% endblock %}
+
+
+{% block content %}
+<div id="file_upload">
+    <form action="/albuns/{{ object.id }}/action/" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+  <input type="hidden" name="action" value="send_image"/>
+        <input type="file" name="file[]" multiple>
+        <button type="submit">Enviar</button>
+        <div class="file_upload_label">Adicionar fotos</div>
+    </form>
+    <table class="files">
+        <tr class="file_upload_template" style="display:none;">
+            <td class="file_upload_preview"></td>
+            <td class="file_name"></td>
+            <td class="file_size"></td>
+            <td class="file_upload_progress"><div></div></td>
+            <td class="file_upload_start"><button>Iniciar</button></td>
+            <td class="file_upload_cancel"><button>Cancelar</button></td>
+        </tr>
+        <tr class="file_download_template" style="display:none;">
+            <td class="file_download_preview"></td>
+        </tr>
+    </table>
+    <div class="file_upload_overall_progress"><div style="display:none;"></div></div>
+    <div class="file_upload_buttons">
+        <button class="file_upload_start">Iniciar Todos</button> 
+        <button class="file_upload_cancel">Cancelar Todos</button> 
+        <button onclick="parent.location.reload();" class="file_upload_done">Concluído</button> 
+    </div>
+</div>
+{% endblock %}
+

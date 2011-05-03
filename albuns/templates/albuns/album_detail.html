@@ -9,9 +9,6 @@
 
 {% if request.user.is_authenticated %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/editphoto.js"></script>
-<script src="{{ STATIC_URL }}js/jquery.fileupload.js"></script>
-<script src="{{ STATIC_URL }}js/jquery.fileupload-ui.js"></script>
-<link rel="stylesheet" href="{{ STATIC_URL }}css/jquery.fileupload-ui.css">
 {% endif %}
 
 {% endblock %}
@@ -38,18 +35,7 @@
 {% endif %}
 {% if request.user.is_authenticated %}
 <a class="to_button" href="/albuns/edit/{{ object.id }}/">Editar</a>
-
-<form id="file_upload" action="/albuns/{{ object.id }}/action/" method="POST" enctype="multipart/form-data">
-  {% csrf_token %}
-  <input type="hidden" name="action" value="send_image"/>
-  <input type="file" name="file" multiple>
-  <div class="to_button">
-    Adicionar Fotos
-  </div>
-</form>
-
-<table id="files"></table>
-
+<a id="addphoto" class="to_button" href="/albuns/upload/{{ object.id }}/">Adicionar Fotos</a>
 
 <div id="editwindow">
   <h3>Editar Imagem</h3>
@@ -84,7 +70,5 @@
   </div>
   {% endfor %}
 </div>
-
-
 
 {% endblock %}

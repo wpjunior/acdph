@@ -26,30 +26,13 @@ $(document).ready(function (e) {
 		   $('div.photo[rel="'+id+'"]').remove();
 	       });
     }
-
-    $('#file_upload').fileUploadUI({
-        uploadTable: $('#files'),
-        buildUploadRow: function (files, index) {
-            return $('<tr><td>' + files[index].name + '<\/td>' +
-                     '<td class="file_upload_progress"><div><\/div><\/td>' +
-                     '<td class="file_upload_cancel">' +
-                     '<button class="ui-state-default ui-corner-all" title="Cancel">' +
-                     '<span class="ui-icon ui-icon-cancel">Cancel<\/span>' +
-                     '<\/button><\/td><\/tr>');
-        },
-        buildDownloadRow: function (file) {
-	    if (file.error) {
-		alert(file.error);
-		return $('');
-	    }
-
-	    $('div#album').append('<div class="photo" rel="'+file.id+'"><a class="photo" title="'+file.name+'" href="'+file.url+'" rel="group"><img src="'+file.thumburl+'"/></a><p><a class="edit" href="#">Editar</a> <a class="delete" href="#">Apagar</a></p></div>');
-	    $('div.photo[rel="'+file.id+'"] a.edit').click (onEditCB);
-	    $('div.photo[rel="'+file.id+'"] a.delete').click (onDeleteCB);
-	    setFancyBox();
-	    return $('');
-
-	}
+    $("#addphoto").fancybox({
+	'width'             : '75%',
+        'height'            : '75%',
+	'autoScale'         : false,
+        'transitionIn'      : 'none',
+	'transitionOut'     : 'none',
+	'type'              : 'iframe'
     });
 
     $('div#editwindow form').submit(function (e) {

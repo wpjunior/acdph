@@ -35,9 +35,13 @@ class AlbumEdit(ContextHackMixin, UpdateView):
 class AlbumView(ContextHackMixin, DetailView):
     model = Album
 
+class AlbumUpload(ContextHackMixin, DetailView):
+    model = Album
+    template_name = "albuns/album_upload.html"
+
 def _send_file(album, request):
     try:
-        file = request.FILES['file']
+        file = request.FILES['file[]']
         photo = Photo(content_object=album)
         print photo, type(photo.image)
         photo.image.save(file.name, file)
@@ -49,7 +53,8 @@ def _send_file(album, request):
     else:
         photo = Photo.objects.get(id=photo.id) #fix bug :-|
         return JSONResponse({'error': None, 'id': photo.id, 'name': photo.name, 'url': photo.image.url,
-                         'thumburl': photo.image.thumbnail.url()})
+                             'size': photo.image.size,
+                         'thumbnail': photo.image.thumbnail.url()})
 
 def _edit_image(album, request):
     photo_id = request.POST.get('photo_id', '')
