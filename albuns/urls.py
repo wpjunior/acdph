@@ -10,5 +10,6 @@ urlpatterns = patterns('albuns.views',
     url(r'^edit/(?P<pk>\d+)/$', login_required(AlbumEdit.as_view())),
     url(r'^upload/(?P<pk>\d+)/$', login_required(AlbumUpload.as_view())),
     url(r'^(?P<pk>\d+)/action/$', 'image_action'),
+    url(r'^(?P<pk>\d+)/upload/$', 'upload'),
     url(r'action/$', 'album_action'),
 )

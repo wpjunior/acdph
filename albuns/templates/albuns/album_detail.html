@@ -9,12 +9,50 @@
 
 {% if request.user.is_authenticated %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/editphoto.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/plupload.js"></script> 
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.ui.plupload/jquery.ui.plupload.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/plupload.gears.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/plupload.silverlight.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/plupload.flash.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/plupload.html4.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/plupload.html5.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/plupload.pt-br.js"></script>
+<link rel="stylesheet" href="{{ STATIC_URL }}js/jquery.ui.plupload/css/jquery.ui.plupload.css" type="text/css" media="screen" />
+
+<script type="text/javascript">
+
+$(function() {
+$("#uploader").plupload({
+	// General settings
+	runtimes : 'html5,flash,gears,silverlight,html4',
+	url : '/albuns/{{ object.id }}/upload/',
+	max_file_size : '10mb',
+	unique_names : true,
+	headers : {'X-Requested-With' : 'XMLHttpRequest', 'X-CSRFToken' : '{{ csrf_token }}'},
+	// Resize images on clientside if we can
+	resize : {width : 800, height : 600, quality : 90},
+
+	// Specify what files to browse for
+	filters : [
+	    {title : "Arquivos de imagem", extensions : "jpg,jpeg,gif,png"}
+	],
+
+	// Flash settings
+	flash_swf_url : '/static/js/plupload.flash.swf',
+
+	// Silverlight settings
+	silverlight_xap_url : '/static/js/plupload.silverlight.xap'
+    });
+});
+</script>
 {% endif %}
 
 {% endblock %}
 
 
 {% block content %}
+
+
 <h2>{{ object.name }}</h2>
 <table>
 {% if object.local %}
@@ -33,9 +71,10 @@
   {{ object.desc }}
 </p>
 {% endif %}
+
 {% if request.user.is_authenticated %}
 <a class="to_button" href="/albuns/edit/{{ object.id }}/">Editar</a>
-<a id="addphoto" class="to_button" href="/albuns/upload/{{ object.id }}/">Adicionar Fotos</a>
+<a class="to_button" id="addphoto" href="#">Adicionar Fotos</a>
 
 <div id="editwindow">
   <h3>Editar Imagem</h3>
@@ -49,6 +88,18 @@
     <input type="submit" value="Salvar">
   </form>
 </div>
+
+<div id="photo-upload" class="hidden">
+  <form action="/albuns/{{ object.id }}/upload/" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div id="uploader">
+      <p>Seu Navegador não possui flash, silverligth nem suporte a HTML5</p>
+    </div>
+  </form>
+</div>
+
+
+
 {% endif %}
 
 <div id="album">

@@ -26,13 +26,13 @@ $(document).ready(function (e) {
 		   $('div.photo[rel="'+id+'"]').remove();
 	       });
     }
-    $("#addphoto").fancybox({
-	'width'             : '75%',
-        'height'            : '75%',
-	'autoScale'         : false,
-        'transitionIn'      : 'none',
-	'transitionOut'     : 'none',
-	'type'              : 'iframe'
+    $("#addphoto").click( function (e) {
+	$("#photo-upload").show();
+	$.fancybox({'href': '#photo-upload',
+		    'onClosed'		: function() {
+			$("#photo-upload").hide();
+			window.location.reload();
+		    }});
     });
 
     $('div#editwindow form').submit(function (e) {

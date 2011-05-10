@@ -41,7 +41,7 @@ class AlbumUpload(ContextHackMixin, DetailView):
 
 def _send_file(album, request):
     try:
-        file = request.FILES['file[]']
+        file = request.FILES['file']
         photo = Photo(content_object=album)
         print photo, type(photo.image)
         photo.image.save(file.name, file)
@@ -124,3 +124,8 @@ def album_action(request):
         return _delete_album(request)
     
     raise Http404
+
+@login_required
+def upload(request, pk):
+    album = get_object_or_404(Album, pk=pk)
+    return _send_file(album, request)

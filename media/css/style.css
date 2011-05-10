@@ -1412,7 +1412,7 @@ input, select
 /* end LayoutCell */
 
 
-#album {margin-top: 10px;}
+#album {margin-top: 10px; overflow: hidden;}
 textarea.mce {width: 650px; height: 600px; display: block;}
 div.photo {display: inline-block; float: left; margin: 2px;}
 div.photo-container, div.album-container {position: relative;}
@@ -1476,3 +1476,5 @@ div.top {float: none;}
 span.tools {display: block;}
 .ui-icon {display: inline-block;}
 .mini-slider { padding: 0px; margin: 0px}
+#photo-upload {float: right; }
+.hidden {display: none;}
