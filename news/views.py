@@ -29,16 +29,21 @@ class NoticeList(ContextHackMixin, ListView):
 class NoticeAdd(ContextHackMixin, CreateView):
     model = Notice
     form_class = NoticeForm
+    success_url = "/news/"
 
     def form_valid(self, form):
-        obj = form.save(commit=False)
-        obj.user = self.request.user
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
 
-        return super(NoticeAdd, self).form_valid(obj)
+        return super(NoticeAdd, self).form_valid(self.object)
+
+    def get_success_url(self):
+        return self.success_url
 
 class NoticeUpdate(ContextHackMixin, UpdateView):
     model = Notice
     form_class = NoticeForm
+    success_url = "/news/"
 
 class NoticeDelete(ContextHackMixin, DeleteView):
     model = Notice

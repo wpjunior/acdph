@@ -8,13 +8,15 @@ from albuns.models import Album
 from terranossa.captcha.fields import CaptchaField
 from django.core.mail import send_mail, BadHeaderError
 from django import forms
-from terranossa.settings import FROM_EMAIL
+from terranossa.settings import FROM_EMAIL, TO_EMAIL
 from django.template import Context, loader
 from django.http import HttpResponse, HttpResponseRedirect
+from django.db.models import Q
 
 def home(request):
-    notices = Notice.objects.all()[:5]
-    albums = Album.objects.all()[:5]
+    notices = Notice.objects.filter(Q(category__id=2)|Q(category__id=3))[:5]
+    opniao = Notice.objects.filter(category__id=1)[:5]
+    albums = Album.objects.all()[:8]
 
     return render_to_response("home.html", locals(),
                               context_instance=RequestContext(request))
@@ -47,7 +49,8 @@ def faleconosco(request):
 
         try:
             send_mail("Mensagem FaleConosco", text, FROM_EMAIL, [TO_EMAIL])
-        except:
+        except Exception, e:
+            print e
             erro = 'Erro ao Enviar Mensagem'
         else:
             return HttpResponseRedirect('/')

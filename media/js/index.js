@@ -8,13 +8,15 @@ $(document).ready (function (e) {
 	autoslide: 8000
 
     });
-    $('.mini-slider').ulslide({
+
+    $('.opslider').ulslide({
 	statusbar: true,
-	width: 200,
+	width: 400,
 	height: 'auto',
 	affect: 'fade',
 	duration: 500,
-	autoslide: 4000
+	autoslide: 8000
 
     });
+    
 });

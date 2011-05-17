@@ -255,7 +255,7 @@ h1.art-Logo-name
 
 h1.art-Logo-name, h1.art-Logo-name a, h1.art-Logo-name a:link, h1.art-Logo-name a:visited, h1.art-Logo-name a:hover
 {
-	font-family: "Comic Sans MS", Tahoma, Arial, Sans-Serif;
+	font-family: Tahoma, Arial, Sans-Serif;
 	font-size: 32px;
 	text-decoration: none;
 	padding:0;
@@ -927,14 +927,14 @@ a img
 	text-align:left;
 	text-indent:0;
 	line-height:inherit;
-	font-family: "Comic Sans MS", Tahoma, Arial, Sans-Serif;
+	font-family: Tahoma, Arial, Sans-Serif;
 	font-size: 22px;
 	color: #416818;
 }
 
 .art-PostHeaderIcon-wrapper, .art-PostHeaderIcon-wrapper a, .art-PostHeaderIcon-wrapper a:link, .art-PostHeaderIcon-wrapper a:visited, .art-PostHeaderIcon-wrapper a:hover
 {
-	font-family: "Comic Sans MS", Tahoma, Arial, Sans-Serif;
+	font-family: Tahoma, Arial, Sans-Serif;
 	font-size: 22px;
 	color: #416818;
 }
@@ -944,7 +944,7 @@ a img
 /* begin PostHeader */
 .art-PostHeader a:link
 {
-  font-family: "Comic Sans MS", Tahoma, Arial, Sans-Serif;
+  font-family: Tahoma, Arial, Sans-Serif;
   text-decoration: none;
   text-align: left;
   color: #4E7D1C;
@@ -952,7 +952,7 @@ a img
 
 .art-PostHeader a:visited, .art-PostHeader a.visited
 {
-  font-family: "Comic Sans MS", Tahoma, Arial, Sans-Serif;
+  font-family: Tahoma, Arial, Sans-Serif;
   text-decoration: none;
   text-align: left;
   color: #5A725C;
@@ -960,7 +960,7 @@ a img
 
 .art-PostHeader a:hover, .art-PostHeader a.hovered
 {
-  font-family: "Comic Sans MS", Tahoma, Arial, Sans-Serif;
+  font-family: Tahoma, Arial, Sans-Serif;
   text-decoration: none;
   text-align: left;
   color: #396C09;
@@ -1037,42 +1037,42 @@ h1 a:visited, h2 a:visited, h3 a:visited, h4 a:visited, h5 a:visited, h6 a:visit
 /* Start Content headings Fonts & Colors  */
 h1, h1 a, h1 a:link, h1 a:visited, h1 a:hover
 {
-  font-family: "Comic Sans MS", Tahoma, Arial, Sans-Serif;
+  font-family: Tahoma, Arial, Sans-Serif;
   font-size: 29px;
   color: #5B9121;
 }
 
 h2, h2 a, h2 a:link, h2 a:visited, h2 a:hover
 {
-  font-family: "Comic Sans MS", Tahoma, Arial, Sans-Serif;
+  font-family: Tahoma, Arial, Sans-Serif;
   font-size: 22px;
   color: #5B9121;
 }
 
 h3, h3 a, h3 a:link, h3 a:visited, h3 a:hover
 {
-  font-family: "Comic Sans MS", Tahoma, Arial, Sans-Serif;
+  font-family: Tahoma, Arial, Sans-Serif;
   font-size: 17px;
   color: #4F6450;
 }
 
 h4, h4 a, h4 a:link, h4 a:visited, h4 a:hover
 {
-  font-family: "Comic Sans MS", Tahoma, Arial, Sans-Serif;
+  font-family: Tahoma, Arial, Sans-Serif;
   font-size: 14px;
   color: #384739;
 }
 
 h5, h5 a, h5 a:link, h5 a:visited, h5 a:hover
 {
-  font-family: "Comic Sans MS", Tahoma, Arial, Sans-Serif;
+  font-family: Tahoma, Arial, Sans-Serif;
   font-size: 12px;
   color: #384739;
 }
 
 h6, h6 a, h6 a:link, h6 a:visited, h6 a:hover
 {
-  font-family: "Comic Sans MS", Tahoma, Arial, Sans-Serif;
+  font-family: Tahoma, Arial, Sans-Serif;
   font-size: 10px;
   color: #384739;
 }
@@ -1376,7 +1376,7 @@ input, select
 	overflow: hidden;
 	width: 704px;
 }
-.art-contentLayout .art-content-sidebar2
+.art-contentLayout .art-content-bottonbar
 {
 	position: relative;
 	margin: 0;
@@ -1384,7 +1384,7 @@ input, select
 	border: 0;
 	float: left;
 	overflow: hidden;
-	width: 704px;
+	width: 860px;
 }
 .art-contentLayout .art-content-wide
 {
@@ -1399,7 +1399,7 @@ input, select
 /* end LayoutCell */
 
 /* begin LayoutCell */
-.art-contentLayout .art-sidebar2
+.art-contentLayout .art-bottonbar
 {
 	position: relative;
 	margin: 0;
@@ -1407,7 +1407,7 @@ input, select
 	border: 0;
 	float: right;
 	overflow: hidden;
-	width: 230px;
+	width: 860px;
 }
 /* end LayoutCell */
 
@@ -1478,3 +1478,5 @@ span.tools {display: block;}
 .mini-slider { padding: 0px; margin: 0px}
 #photo-upload {float: right; }
 .hidden {display: none;}
+.li-photo {position: relative; display: inline;}
+.opslider, .slider {float: left; margin: 5px !important;}
