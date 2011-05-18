@@ -1,6 +1,7 @@
 from django.conf.urls.defaults import patterns, include, url
 from settings import MEDIA_ROOT
 # Uncomment the next two lines to enable the admin:
+from terranossa.views import LatestEntriesFeed
 from django.contrib import admin
 admin.autodiscover()
 
@@ -15,6 +16,7 @@ urlpatterns = patterns('',
     url(r'^news/', include('terranossa.news.urls')),
     url(r'^albuns/', include('terranossa.albuns.urls')),
     url(r'^videos/', include('terranossa.videos.urls')),
+    url(r'^rss/', LatestEntriesFeed()),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
