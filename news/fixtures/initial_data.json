@@ -19,5 +19,12 @@
 	"fields": {
 	    "name": "Estado"
         }
+    },
+    {
+	"pk": 4,
+	"model": "news.category",
+	"fields": {
+	    "name": "País"
+        }
     }
 ]
