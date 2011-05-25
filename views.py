@@ -15,7 +15,7 @@ from django.db.models import Q
 from django.contrib.syndication.views import Feed
 
 def home(request):
-    notices = Notice.objects.filter(Q(category__id=2)|Q(category__id=3))[:5]
+    notices = Notice.objects.filter(Q(category__id=2)|Q(category__id=3)|Q(category__id=4))[:5]
     opniao = Notice.objects.filter(category__id=1)[:5]
     albums = Album.objects.all()[:8]
 
