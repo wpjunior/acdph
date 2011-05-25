@@ -66,7 +66,7 @@
 	    <img src="{{ notice.image.url }}" alt="{{ notice.name }}"/> 
 		<div class="notice-caption">
 		  <a href="{{notice.get_absolute_url }}"><h3>{{ notice.category.name}}: {{ notice.name }}</h3></a>
-		  <p><small>Postado em {{ notice.date }} por {% firstof notice.user.get_full_name notice.user.username %}
+		  <p><small>{{ notice.date }}
 		      {% if request.user.is_authenticated %}
 		      <a href="/news/edit/{{ notice.id }}/">Editar</a>
 		      <a href="/news/delete/{{ notice.id }}/">Apagar</a>
@@ -87,7 +87,7 @@
 	    <img src="{{ ap.image.url }}" alt="{{ ap.name }}"/> 
 		<div class="notice-caption">
 		  <a href="{{ ap.get_absolute_url }}"><h3>{{ ap.category.name}}: {{ ap.name }}</h3></a>
-		  <p><small>Postado em {{ ap.date }} por {% firstof ap.user.get_full_name ap.user.username %}
+		  <p><small>{{ ap.date }}
 		      {% if request.user.is_authenticated %}
 		      <a href="/news/edit/{{ ap.id }}/">Editar</a>
 		      <a href="/news/delete/{{ ap.id }}/">Apagar</a>
