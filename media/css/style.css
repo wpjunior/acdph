@@ -1323,13 +1323,13 @@ input, select
 /* begin PageFooter */
 .art-page-footer, .art-page-footer a, .art-page-footer a:link, .art-page-footer a:visited, .art-page-footer a:hover
 {
-	font-family:Arial;
-	font-size:10px;
-	letter-spacing:normal;
-	word-spacing:normal;
-	font-style:normal;
-	font-weight:normal;
-	text-decoration:underline;
+	font-family: Arial;
+	font-size: 12px;
+	letter-spacing: normal;
+	word-spacing: normal;
+	font-style: normal;
+	font-weight: normal;
+	text-decoration: underline;
 	color:#68A626;
 }
 
