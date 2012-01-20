@@ -5,10 +5,10 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from news.models import Notice
 from albuns.models import Album
-from terranossa.captcha.fields import CaptchaField
+from acdph.captcha.fields import CaptchaField
 from django.core.mail import send_mail, BadHeaderError
 from django import forms
-from terranossa.settings import FROM_EMAIL, TO_EMAIL
+from acdph.settings import FROM_EMAIL, TO_EMAIL
 from django.template import Context, loader
 from django.http import HttpResponse, HttpResponseRedirect
 from django.db.models import Q
@@ -79,4 +79,4 @@ class LatestEntriesFeed(Feed):
         return obj.user.email
 
     def item_link(self, item):
-        return "http://portalterranossa.com.br/news/%d/" % item.id
+        return "http://portalacdph.com.br/news/%d/" % item.id

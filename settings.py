@@ -1,4 +1,4 @@
-# Django settings for terranossa project.
+# Django settings for acdph project.
 import os
 
 PROJECT_PATH = os.path.dirname(os.path.realpath(__file__))
@@ -100,10 +100,10 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'terranossa.wikipages.middleware.WikipageFallbackMiddleware',
+    'acdph.wikipages.middleware.WikipageFallbackMiddleware',
 )
 
-ROOT_URLCONF = 'terranossa.urls'
+ROOT_URLCONF = 'acdph.urls'
 
 TEMPLATE_DIRS = (
     os.path.join(PROJECT_PATH, "templates"),
@@ -117,11 +117,11 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
-    'terranossa.wikipages',
-    'terranossa.albuns',
-    'terranossa.videos',
-    'terranossa.news',
-    'terranossa.captcha',
+    'acdph.wikipages',
+    'acdph.albuns',
+    'acdph.videos',
+    'acdph.news',
+    'acdph.captcha',
 )
 
 LOGGING = {
@@ -146,7 +146,7 @@ LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/auth/login'
 LOGOUT_URL = '/auth/logout'
 FROM_EMAIL = 'notifydjango@gmail.com'
-TO_EMAIL = 'vagner@portalterranossa.com.br'
+TO_EMAIL = 'vagner@portalacdph.com.br'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = FROM_EMAIL
 EMAIL_HOST_PASSWORD = 'django123'
